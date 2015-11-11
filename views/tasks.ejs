@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project Management</title>
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-offset-2 col-md-8">
+        
+        <a href="/">Back to Projects</a>
+        
+        <center><h3><%=project.name%></h3></center>
+        <center><h4><i><%=project.description%></i></h4></center>
+        
+        <a href="/projects/<%=project.id%>/add_task" class="btn btn-success">Add Task</a>
+        <br/>
+        <br/>
+        
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Action</th>    
+          </tr>          
+          <%for(var i = 0; i < tasks.length; i++){%>
+           <tr>
+            <td><%=tasks[i].name%></td>
+            <td><%=tasks[i].description%></td>
+            <td><%=tasks[i].deadline%></td>
+            <td>
+              <a href="/projects/<%=project.id%>/edit_task/<%=tasks[i].id%>"  class="btn btn-primary">Edit</a>
+            </td>
+           </tr>
+          <%}%>
+          
+        </table>
+          
+            
+      </div>
+    </div> 
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"/>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project Management</title>
+    <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-offset-3 col-md-6">
+        <center><h3>Add Task</h3></center>
+        
+          <form action="<%if(locals.task){%>/projects/<%=project_id%>/edit_task/<%=task.id%><%}else{%>/projects/<%=project_id%>/tasks<%}%>" method="POST">
+            <div class="form-group">
+              <label for="taskName">Task Name</label>
+              <input type="text" class="form-control" id="taskName" name="name" placeholder="Task Name" 
+              value="<%if(locals.task){%><%=(locals.task.name || "")%><%}else{%><%=""%><%}%>">
+            </div>
+            
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="<%if(locals.task){%><%=(locals.task.description || "")%><%}else{%><%=""%><%}%>">
+            </div>
+            
+            <div class="form-group">
+              <label for="deadline">Deadline</label>
+              <input type="text" class="form-control" name="deadline" id="deadline" value="<%if(locals.task){%><%=(locals.task.deadline || "")%><%}else{%><%=""%><%}%>">
+            </div>
+            
+            <input type="hidden" name="project_id" value="<%=project_id%>">
+            
+            <button type="submit" class="btn btn-default">Submit</button>
+            
+            <%if(locals.task){%>
+              <a href="/projects/<%=project_id%>/delete_task/<%=locals.task.id%>" class="btn btn-danger">Delete</a>
+            <%}%>
+          </form>  
+      </div>
+    </div> 
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"/>
+  </body>
+</html>
